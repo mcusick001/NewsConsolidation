@@ -7,14 +7,14 @@
 -------------------
 This project is a comprehensive full-stack News and Content Management Portal
 built with Django and Django REST Framework (DRF), backed by a MariaDB relational
-database. It features strict Role-Based Access Control (RBAC), custom web dashboards
-for readers, journalists, and editors, automated email notifications, and webhook
-event handlers.
+database, fully containerized with Docker and documented using Sphinx. It features 
+strict Role-Based Access Control (RBAC), custom web dashboards for readers,
+journalists, and editors, automated email notifications, and webhook event handlers.
 
 ## GitHub Repository Link
 You can access, fork, or clone the physical repository for testing and deployment
 from your GitHub profile:
-https://github.com/mcusick001/News-Application.git
+https://github.com/mcusick001/NewsConsolidation.git
 
 -----------------
 2. PREREQUISITES
@@ -23,69 +23,15 @@ Make sure you have the following installed on your system:
  - Python (version 3.14.4)
  - MariaDB / MySQL server
 
---------------------
-3. PROJECT STRUCTURE
---------------------
-news_project/
-│
-├── news/
-│   ├── migrations/
-│   │   |-- __init__.py
-│   │   |-- 0001_initial.py
-|   |   |-- 0002_publisher_editors_publisher_journalists_and_more.py
-|   |   |-- 0003_newsletter_articles.py
-|   |   |-- 0004_alter_article_journalist.py
-|   |   |-- 0005_alter_article_publisher.py
-│   ├── templates/
-│   │   └── news/
-|   |       |-- article_confirm_delete.html
-|   |       |-- article_feed.html
-|   |       |-- article_form.html
-│   │       |-- base.html
-│   │       |-- editor_dashboard.html
-│   │       |-- journalist_dashboard.html
-│   │       |-- login.html
-|   |       |-- newsletter_confirm_delete.html
-│   │       |-- newsletter_form.html
-│   │       |-- publisher_management.html
-|   |       |-- reader_dashboard.html
-│   │       |-- register.html
-|   |       |-- subscriptions.html
-│   ├── __init__.py
-│   |-- admin.py
-|   |-- api_urls.py
-│   ├── api_views.py
-│   ├── apps.py
-│   ├── decorators.py
-│   ├── forms.py
-│   ├── models.py
-│   ├── permissions.py 
-│   ├── serializers.py
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
-│
-├── news_project/
-│   ├── __init__.py
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-│
-├── .gitignore
-├── manage.py
-├── README.md
-└── requirements.txt
-
 -----------------------------
-4. LOCAL SETUP & INSTALLATION
+3. LOCAL SETUP & INSTALLATION
 -----------------------------
 1. Clone the repository and navigate into the project directory:
    ```bash
 
-      git clone [https://github.com/mcusick001/News-Application.git]
+      git clone [https://github.com/mcusick001/NewsConsolidation.git]
 
-      cd News-Application
+      cd "Capstone-Project Consolidation"
    ```
 
 2. Set Up a Virtual Environment & Install Dependencies
@@ -132,34 +78,8 @@ news_project/
    python manage.py migrate
    ```
 
-6. Create an Administrator (Superuser) Account
-   ```bash:
-
-   python manage.py createsuperuser
-   ```
-   - Follow the prompts to enter username, email, and password.
-
-7. Run the deployment server
-   ```bash:
-
-   python manage.py runserver
-   ```
-   - Open your brower and navigate to [http://127.0.0.1:8000/]
-     to use the application!
-
-8. Accessing the application
-   Once the server is running, you can open your web browser and access
-   the application at the following endpoints:
-   - Home/Login Page: http://127.0.0.1:8000/
-   - User Registration: http://127.0.0.1:8000/register/
-   - Smart Dashboard Routing: http://127.0.0.1:8000/dashboard/
-   (Automatically routes you based on your user role after logging
-   in)
-   - Django Admin Panel: http://127.0.0.1:8000/admin/
-   - REST API Root: http://127.0.0.1:8000/api/
-
 -----------------------
-5. AUTOMATED TEST SUITE
+4. AUTOMATED TEST SUITE
 -----------------------
 The project includes a robust unit test suite (`APITestCase`) in `news/tests.py`
 covering authentication, RBAC permissions, webhook mocking, and subscription filtering.
@@ -167,5 +87,25 @@ covering authentication, RBAC permissions, webhook mocking, and subscription fil
 To run the automated tests:
    ```bash
 
-   python manage.py test news
+   python manage.py test
    ```
+
+------------------------
+5. DOCKER IMPLEMENTATION
+------------------------
+   - Ensure Docker Desktop is running on your machine.
+   - From the project root directory, build and launch the containers using Docker
+     Compose:
+     ```bash
+
+     docker-compose up --build
+     ```
+
+   - The application will be accessible at http://localhost:8000 .
+
+----------------
+6. DOCUMENTATION
+----------------
+   - The project documentation is built using Sphinx. You can view the built HTML
+     documentation locally by opening: docs/_build/html/index.html in your web
+     browser.
